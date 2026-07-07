@@ -1,0 +1,30 @@
+.optibyte-wrap .optibyte-version {
+  font-size: 0.65em;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.optibyte-engine {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0 16px;
+}
+
+.optibyte-ok { color: #16a34a; font-weight: 600; }
+.optibyte-warn { color: #d97706; font-weight: 600; }
+
+.optibyte-actions {
+  display: inline-block;
+  margin: 0 8px 12px 0;
+}
+
+.optibyte-settings {
+  max-width: 720px;
+  margin-bottom: 24px;
+}
+
+.optibyte-paths code {
+  font-size: 11px;
+}

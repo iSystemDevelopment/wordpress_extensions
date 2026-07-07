@@ -1,0 +1,49 @@
+# WordPress / PHP — iSystem Development
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# WordPress runtime (never commit from a live site)
+wp-config.php
+wp-config.local.php
+.htaccess
+
+# Uploads & caches
+uploads/
+cache/
+upgrade/
+backup/
+backups/
+*.sql
+*.sql.gz
+
+# Dependencies
+vendor/
+node_modules/
+composer.lock
+package-lock.json
+
+# Build / deploy artifacts
+*.zip
+*.tar.gz
+dist/
+build/
+
+# Logs & temp
+*.log
+*.tmp
+*~
+
+# Local env
+.env
+.env.*
+
+# macOS / Windows archives
+__MACOSX/
