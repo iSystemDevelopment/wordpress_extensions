@@ -31,6 +31,10 @@ Safe WordPress database maintenance — expired transients, auto-drafts, spam/tr
 - Does not purge large `autoload=off` options (risk of data loss)
 - Does not touch term / SEO rewrite tables beyond optional optimize
 
+## Test after install
+
+See [TEST_AFTER_INSTALL.md](../../TEST_AFTER_INSTALL.md) — **db-cleaner-pro** section.
+
 ## Contact
 
 diodac.electronics@gmail.com · https://isystem.app

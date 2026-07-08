@@ -23,6 +23,10 @@ Pair with **`isystem-gcc-plus`** for Astra/Spectra admin hardening (script order
 2. Copy `isystem-spectra-companion/` to `wp-content/themes/`
 3. Activate **iSystem Companion for Spectra** under **Appearance → Themes**
 
+## Test after install
+
+See [TEST_AFTER_INSTALL.md](../../TEST_AFTER_INSTALL.md) — **isystem-spectra-companion** section.
+
 ## Contact
 
 diodac.electronics@gmail.com · https://isystem.app

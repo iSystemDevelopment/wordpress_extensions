@@ -55,6 +55,12 @@ legacy/v4-archive/     Archived [retired] deployment — do not use on new sites
 
 ---
 
+## Test after install
+
+See [TEST_AFTER_INSTALL.md](../../TEST_AFTER_INSTALL.md) — **OptiByte WP** section.
+
+---
+
 ## Contact
 
 diodac.electronics@gmail.com · https://isystem.app

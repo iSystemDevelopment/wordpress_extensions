@@ -14,7 +14,7 @@
 - [ ] Bump `Version:` (and matching `*_VERSION` constant) in plugin/theme header
 - [ ] Update package `README.md` version table
 - [ ] `php -l` on changed PHP files
-- [ ] Test activate on staging (PHP 7.4+ / WP 6.3+; OptiByte needs PHP 8.0+)
+- [ ] Complete [TEST_AFTER_INSTALL.md](../TEST_AFTER_INSTALL.md) on staging (PHP 7.4+ / WP 6.3+; OptiByte needs PHP 8.0+)
 - [ ] Tag release `slug-x.y.z`
 - [ ] Deploy via rsync/scp — single folder only
 - [ ] Mirror into monorepo `isystem-codebase/wordpress/` when shipping public changes

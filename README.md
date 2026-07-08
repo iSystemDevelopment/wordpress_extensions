@@ -89,6 +89,12 @@ Monorepo mirror: `isystem-codebase/wordpress/` (keep in sync with this public re
 
 ---
 
+## Test after install
+
+Run the staging checklist in [TEST_AFTER_INSTALL.md](TEST_AFTER_INSTALL.md) after copying packages into `wp-content` and on every version bump.
+
+---
+
 ## Contact
 
 diodac.electronics@gmail.com · https://isystem.app

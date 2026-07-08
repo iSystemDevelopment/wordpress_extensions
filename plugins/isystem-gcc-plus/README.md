@@ -28,6 +28,10 @@ Admin and editor hardening for **Astra + Spectra** stacks.
 
 To customize which admin assets are removed, edit `$matchers_js` / `$matchers_css` in `isystem-gcc-plus.php`.
 
+## Test after install
+
+See [TEST_AFTER_INSTALL.md](../../TEST_AFTER_INSTALL.md) — **isystem-gcc-plus** section.
+
 ## Contact
 
 diodac.electronics@gmail.com · https://isystem.app
