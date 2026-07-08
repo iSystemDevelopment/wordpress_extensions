@@ -1,20 +1,28 @@
 # iSystem Companion for Spectra
 
-**Author:** iSystem Development
-**Version:** 1.0.0
-**Requires Parent Theme:** [Spectra One](https://wordpress.org/themes/spectra-one/)
+Child theme for **[Spectra One](https://wordpress.org/themes/spectra-one/)**.
 
-## Description
+| | |
+|--|--|
+| **Version** | 1.1.0 |
+| **License** | MIT (`LICENSE` in this folder) |
+| **Parent** | `spectra-one` (required) |
+| **Requires** | WordPress 6.3+, PHP 7.4+ |
 
-This is a companion child theme for **Spectra One**. It enhances the admin experience by fixing common plugin conflicts and adds a fallback block pattern to assist in theme development. It is designed to be lightweight and work seamlessly in modern hosting environments (including NGINX, Redis, and Cloudflare setups).
+## Features
 
-### Core Features
+- Enqueues parent + child styles with theme versions
+- **iSystem Patterns** category + Sidebar Fallback block pattern
+- Softens editor conflicts by dequeuing known-bad WPForms / Jetpack scripts on post screens
 
-* **Admin Conflict Fixes:** Prevents known JavaScript errors on post edit screens by selectively dequeuing scripts from WPForms and Jetpack.
-* **Custom Block Pattern:** Includes a simple, pre-styled "Sidebar Fallback" block pattern under a new "iSystem Patterns" category.
+Pair with **`isystem-gcc-plus`** for Astra/Spectra admin hardening (script order, dashboard trim).
 
-## Installation
+## Install
 
-1.  First, ensure the parent theme, **Spectra One**, is installed from the WordPress theme directory.
-2.  Upload the `isystem-spectra-companion` theme folder to your `/wp-content/themes/` directory.
-3.  Navigate to **Appearance > Themes** in your WordPress dashboard and activate the **iSystem Companion for Spectra** theme.
+1. Install parent **Spectra One** from WordPress.org
+2. Copy `isystem-spectra-companion/` to `wp-content/themes/`
+3. Activate **iSystem Companion for Spectra** under **Appearance → Themes**
+
+## Contact
+
+diodac.electronics@gmail.com · https://isystem.app

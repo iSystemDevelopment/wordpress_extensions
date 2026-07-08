@@ -1,28 +1,33 @@
-iSystem GCC Plus 
- 
-A custom functionality plugin, designed to apply advanced performance and stability patches tailored to the site's specific theme and famous plugin stack.
+# iSystem GCC Plus
 
-Admin performance + compatibility hardening for Astra/Spectra. Disables Jetpack "optimization" (Photon / Site Accelerator & lazy images), removes heavy admin-only assets/widgets, and mitigates Spectra duplicate store issues.
+Admin and editor hardening for **Astra + Spectra** stacks.
 
-Features
-Frontend Performance: Disables jquery-migrate.js on the front end to reduce unnecessary script loading for visitors.
+| | |
+|--|--|
+| **Version** | 2.4.0 |
+| **License** | MIT |
+| **Requires** | WordPress 6.3+, PHP 7.4+ |
+| **Settings** | None — activates automatically |
 
-Jetpack Slim-Down: Disables Jetpack's Asset CDN (Photon) and lazy loading features, allowing for more control with dedicated optimization tools.
+## Features
 
-Admin Performance Boost: Intelligently dequeues non-essential, resource-heavy scripts and styles from plugins like Spectra and Cloudflare within the /wp-admin/ area. This significantly speeds up backend page loads.
+- Removes **jQuery Migrate** on the front end only
+- Strips `async` / `defer` from critical Gutenberg / React packages in wp-admin
+- Dequeues heavy admin extras (Spectra Zip AI sidebar, Object Cache Pro charts, WP Mail SMTP charts, Query Monitor in admin, Cloudflare beacon)
+- Trims noisy dashboard widgets
+- Quietly ignores Spectra duplicate `registerStore('spectra')` races
+- Sets ReactModal app element to avoid console warnings
+- Fills missing Astra pagination typography option keys
 
-Clean Dashboard: Removes unnecessary and heavy widgets from the main WordPress dashboard for a faster, cleaner interface.
+**Not included:** Jetpack Photon / Site Accelerator controls (removed — use dedicated Jetpack settings if needed). This package is **not** the legacy `retired-site-optimiser` zip.
 
-Editor Stability Patch: Injects a safe "monkey-patch" to prevent the "Store is already registered" JavaScript error caused by race conditions between Spectra/Jetpack and the block editor.
+## Install
 
-Astra Theme Guard: Prevents potential PHP notices in the Astra theme customizer by ensuring default typography settings are always present.
+1. Copy `isystem-gcc-plus/` to `wp-content/plugins/isystem-gcc-plus/`
+2. Activate **iSystem GCC Plus (Astra + Spectra Hardening)**
 
-Installation
-Create the Plugin: Follow the instructions above to create the retired-site-optimiser.zip file.
+To customize which admin assets are removed, edit `$matchers_js` / `$matchers_css` in `isystem-gcc-plus.php`.
 
-Upload & Activate: In your WordPress dashboard, go to Plugins -> Add New -> Upload Plugin, select your .zip file, and activate the "iSystem GCC Plus" plugin.
+## Contact
 
-Usage
-This plugin works automatically once activated. There are no settings to configure. The optimizations are applied via WordPress hooks and filters in the background.
-
-To customize the scripts that are dequeued in the admin area, you can edit the $matchers_js and $matchers_css arrays within the isystem-gcc-plus.php file.
+diodac.electronics@gmail.com · https://isystem.app

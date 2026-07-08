@@ -4,7 +4,7 @@ MIT-licensed WordPress extensions maintained by **iSystem Development** / DIODAC
 
 Repository: https://github.com/iSystemDevelopment/wordpress_extensions
 
-**Hub:** [isystem.app — WordPress Plugins & Themes](https://isystem.app/#music)
+**Hub:** [isystem.app](https://isystem.app/)
 
 ---
 
@@ -12,16 +12,18 @@ Repository: https://github.com/iSystemDevelopment/wordpress_extensions
 
 ```
 plugins/
-  db-cleaner-pro/          Safe scheduled DB cleanup (transients, orphans, spam)
-  isystem-gcc-plus/        Astra/Spectra hardening — editor scripts, jQuery Migrate
-  OptiByte_WP/             Imagik WebP/AVIF + AI styles (v5 WordPress plugin)
+  db-cleaner-pro/          Safe scheduled DB cleanup (2.2.0)
+  isystem-gcc-plus/        Astra/Spectra admin+editor hardening (2.4.0)
+  OptiByte_WP/             Imagik WebP/AVIF + AI styles (5.0.1); legacy archive in legacy/v4-archive/
 themes/
-  isystem-spectra-companion/   Child theme for Spectra One
+  isystem-spectra-companion/   Child theme for Spectra One (1.1.0)
 docs/
   README.md                Install paths, standards, release checklist
 ```
 
 This repo is **not** a full WordPress core install — copy folders into an existing site's `wp-content/`.
+
+**[retired]:** Only OptiByte keeps an archived `legacy/v4-archive/` tree for historical reference. Other packages have no legacy-host dependency and must not ship old `retired-site-optimiser` zips.
 
 ---
 
@@ -32,6 +34,7 @@ This repo is **not** a full WordPress core install — copy folders into an exis
 ```bash
 cp -R plugins/db-cleaner-pro   /var/www/yoursite/wp-content/plugins/
 cp -R plugins/isystem-gcc-plus /var/www/yoursite/wp-content/plugins/
+cp -R plugins/OptiByte_WP      /var/www/yoursite/wp-content/plugins/
 ```
 
 Activate under **Plugins** in wp-admin.
@@ -46,24 +49,24 @@ Activate under **Plugins** in wp-admin.
 
 ## Packages
 
-| Slug | Type | Purpose |
-|------|------|---------|
-| `db-cleaner-pro` | Plugin | Weekly transient/orphan cleanup + manual run |
-| `isystem-gcc-plus` | Plugin | Spectra/Gutenberg script hardening, admin trim |
-| `isystem-spectra-companion` | Child theme | Spectra One companion — admin fixes, block pattern |
+| Slug | Type | Version | Purpose |
+|------|------|---------|---------|
+| `db-cleaner-pro` | Plugin | 2.2.0 | Weekly expired-transient / orphan cleanup + manual run |
+| `isystem-gcc-plus` | Plugin | 2.4.0 | Spectra/Gutenberg script hardening, admin trim |
+| `OptiByte_WP` | Plugin | 5.0.1 | Media WebP/AVIF optimizer (Imagik + optional AI) |
+| `isystem-spectra-companion` | Child theme | 1.1.0 | Spectra One companion — admin fixes, block pattern |
 
-See per-folder `README.md` where present.
+See per-folder `README.md`.
 
 ---
 
 ## Standards
 
-- **License:** MIT ([LICENSE](LICENSE)) unless a package ships its own `LICENSE` file.
-- **Prefix** public functions with the plugin slug (`db_cleaner_pro_*`).
-- **No secrets** in repo — use wp-config / env on server.
-- **Deploy:** SFTP/rsync plugin folder only; do not commit `vendor/`, uploads, or SQL dumps.
-
-Full org web standards: [isystem-deploy/docs](https://github.com/iSystemDevelopment/isystem-deploy/tree/main/docs) (layout, PWA, Cloudflare cache).
+- **License:** MIT ([LICENSE](LICENSE)) — theme folder includes its own `LICENSE` copy.
+- **Headers:** bump `Version:` in plugin/theme file headers on every release.
+- **Prefix** public functions with the plugin/theme slug.
+- **No secrets** in repo — API tokens live in wp-admin / wp-config / env on server.
+- **Deploy:** rsync/SFTP one folder at a time; do not commit `vendor/`, uploads, or SQL dumps.
 
 ---
 
@@ -75,12 +78,14 @@ git clone https://github.com/iSystemDevelopment/wordpress_extensions.git
 # ln -s $(pwd)/plugins/db-cleaner-pro /path/to/wp-content/plugins/
 ```
 
-Run PHP syntax check:
-
 ```bash
 php -l plugins/db-cleaner-pro/db-cleaner-pro.php
 php -l plugins/isystem-gcc-plus/isystem-gcc-plus.php
+php -l plugins/OptiByte_WP/optibyte-wp.php
+php -l themes/isystem-spectra-companion/functions.php
 ```
+
+Monorepo mirror: `isystem-codebase/wordpress/` (keep in sync with this public repo).
 
 ---
 

@@ -27,10 +27,11 @@ class OptiByte_Admin {
 	}
 
 	public static function register_menu() {
+		// Settings + API token: require manage_options, not just upload_files.
 		add_media_page(
 			__( 'OptiByte', 'optibyte-wp' ),
 			__( 'OptiByte', 'optibyte-wp' ),
-			'upload_files',
+			'manage_options',
 			'optibyte-wp',
 			array( __CLASS__, 'render_page' )
 		);
@@ -57,7 +58,7 @@ class OptiByte_Admin {
 	}
 
 	public static function render_page() {
-		if ( ! current_user_can( 'upload_files' ) ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'Insufficient permissions.', 'optibyte-wp' ) );
 		}
 
@@ -72,6 +73,9 @@ class OptiByte_Admin {
 
 	private static function handle_post() {
 		if ( ! isset( $_POST['optibyte_wp_action'] ) ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 		check_admin_referer( 'optibyte_wp_dashboard' );

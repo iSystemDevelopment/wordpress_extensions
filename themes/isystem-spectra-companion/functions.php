@@ -1,92 +1,93 @@
 <?php
 /**
- * iSystem Companion for Spectra
+ * iSystem Companion for Spectra — child theme functions.
  *
- * This file merges the original child theme functions with the
- * admin optimizations from the GCC Plus plugin.
+ * Parent: Spectra One (`spectra-one`)
  *
  * @package iSystem_Spectra_Companion
+ * @version 1.1.0
  */
 
-// Prevent direct access to the file.
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
- * Enqueues the parent and child theme stylesheets.
+ * Enqueue parent + child stylesheets.
  */
 function isystem_enqueue_styles() {
-    // Enqueue the parent theme's stylesheet (Spectra One).
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+	wp_enqueue_style(
+		'parent-style',
+		get_template_directory_uri() . '/style.css',
+		array(),
+		wp_get_theme( get_template() )->get( 'Version' )
+	);
 
-    // Enqueue the child theme's stylesheet, making it dependent on the parent.
-    wp_enqueue_style(
-        'child-style',
-        get_stylesheet_directory_uri() . '/style.css',
-        [ 'parent-style' ]
-    );
+	wp_enqueue_style(
+		'child-style',
+		get_stylesheet_directory_uri() . '/style.css',
+		array( 'parent-style' ),
+		wp_get_theme()->get( 'Version' )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'isystem_enqueue_styles' );
 
 /**
- * Returns the HTML content for the sidebar fallback block pattern.
+ * Sidebar fallback block pattern HTML.
  *
- * @return string The block pattern HTML content.
+ * @return string
  */
 function isystem_get_sidebar_fallback_pattern_content() {
-    // Use output buffering to capture the HTML.
-    ob_start();
-    ?>
-    <div class="wp-block-group has-background" style="background-color:#f1f1f1;padding-top:1em;padding-right:1em;padding-bottom:1em;padding-left:1em">
-        <p>This is a fallback sidebar block from the iSystem Companion theme.</p>
-        </div>
-    <?php
-    // Return the captured HTML.
-    return ob_get_clean();
+	ob_start();
+	?>
+	<!-- wp:group {"style":{"color":{"background":"#f1f1f1"},"spacing":{"padding":{"top":"1em","right":"1em","bottom":"1em","left":"1em"}}}} -->
+	<div class="wp-block-group has-background" style="background-color:#f1f1f1;padding-top:1em;padding-right:1em;padding-bottom:1em;padding-left:1em">
+		<!-- wp:paragraph -->
+		<p><?php echo esc_html__( 'This is a fallback sidebar block from the iSystem Companion theme.', 'isystem-spectra-companion' ); ?></p>
+		<!-- /wp:paragraph -->
+	</div>
+	<!-- /wp:group -->
+	<?php
+	return ob_get_clean();
 }
 
 /**
- * Registers custom block patterns and a new pattern category for the theme.
+ * Register block patterns + category.
  */
 function isystem_register_block_patterns() {
-    // Register a unique category for iSystem patterns.
-    register_block_pattern_category( 'isystem-patterns', [ 'label' => __( 'iSystem Patterns', 'isystem-spectra-companion' ) ] );
+	register_block_pattern_category(
+		'isystem-patterns',
+		array(
+			'label' => __( 'iSystem Patterns', 'isystem-spectra-companion' ),
+		)
+	);
 
-    // Register the sidebar fallback pattern.
-    register_block_pattern(
-        'isystem/sidebar-fallback',
-        [
-            'title'      => __( 'Sidebar Fallback', 'isystem-spectra-companion' ),
-            'content'    => isystem_get_sidebar_fallback_pattern_content(),
-            'categories' => [ 'isystem-patterns' ],
-        ]
-    );
+	register_block_pattern(
+		'isystem/sidebar-fallback',
+		array(
+			'title'       => __( 'Sidebar Fallback', 'isystem-spectra-companion' ),
+			'description' => __( 'Simple sidebar placeholder for layouts that need a fallback region.', 'isystem-spectra-companion' ),
+			'content'     => isystem_get_sidebar_fallback_pattern_content(),
+			'categories'  => array( 'isystem-patterns' ),
+		)
+	);
 }
 add_action( 'init', 'isystem_register_block_patterns' );
 
 /**
- * Dequeues conflicting admin scripts from other plugins.
- * This function resolves known JavaScript errors on post/page edit screens.
+ * Dequeue conflicting admin scripts on post edit screens.
  */
 function isystem_dequeue_conflicting_scripts() {
-    $screen = get_current_screen();
+	if ( ! function_exists( 'get_current_screen' ) ) {
+		return;
+	}
+	$screen = get_current_screen();
+	if ( ! $screen || 'post' !== $screen->base ) {
+		return;
+	}
 
-    // Only run on post and page editing screens.
-    if ( $screen && 'post' === $screen->base ) {
+	// WPForms education script can throw on some editor bootstraps.
+	wp_dequeue_script( 'wpforms-education-edit-post' );
 
-        /**
-         * FIX FOR WPFORMS:
-         * Dequeues a script that can cause 'Cannot read properties of undefined' errors.
-         */
-        wp_dequeue_script( 'wpforms-education-edit-post' );
-
-        /**
-         * FIX FOR JETPACK:
-         * Dequeues a script that can cause the "Initial state is missing" error.
-         */
-        wp_dequeue_script( 'jetpack-connection-i18n' );
-    }
+	// Jetpack connection i18n without bootstrapped state (optional Jetpack install).
+	wp_dequeue_script( 'jetpack-connection-i18n' );
 }
-// Hook into 'admin_enqueue_scripts' with high priority (99) to run after most other scripts are enqueued.
 add_action( 'admin_enqueue_scripts', 'isystem_dequeue_conflicting_scripts', 99 );

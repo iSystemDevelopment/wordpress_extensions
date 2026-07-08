@@ -1,20 +1,23 @@
 <?php
 /**
- * Plugin Name: OptiByte WP
- * Plugin URI: https://optibyte.isystem.app/
- * Description: WordPress media optimizer — WebP/AVIF via Imagik (ImageMagick), queue + cron, optional AI styles via iSystem API.
- * Version: 5.0.0
- * Author: iSystem Development
- * Author URI: https://isystem.app/
- * License: MIT
- * Text Domain: optibyte-wp
+ * Plugin Name:       OptiByte WP
+ * Plugin URI:        https://optibyte.isystem.app/
+ * Description:       WordPress media optimizer — WebP/AVIF via Imagik (ImageMagick), queue + WP-Cron, optional AI styles via iSystem API. Replaces the archived legacy cron v4 bundle (legacy/v4-archive/).
+ * Version:           5.0.1
  * Requires at least: 6.0
- * Requires PHP: 8.0
+ * Requires PHP:      8.0
+ * Author:            iSystem Development
+ * Author URI:        https://isystem.app/
+ * License:           MIT
+ * License URI:       https://opensource.org/licenses/MIT
+ * Text Domain:       optibyte-wp
+ *
+ * Copyright (c) 2026 iSystem Development / DIODAC ELECTRONICS
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'OPTIBYTE_WP_VERSION', '5.0.0' );
+define( 'OPTIBYTE_WP_VERSION', '5.0.1' );
 define( 'OPTIBYTE_WP_FILE', __FILE__ );
 define( 'OPTIBYTE_WP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OPTIBYTE_WP_URL', plugin_dir_url( __FILE__ ) );

@@ -1,11 +1,15 @@
 /*
 Theme Name: iSystem Companion for Spectra
-Theme URI: https://isystem.app
-Description: A companion child theme for Spectra One that provides admin optimizations for WPForms and Jetpack, and adds custom block patterns.
+Theme URI: https://isystem.app/
+Description: Child theme for Spectra One — admin conflict fixes (WPForms/Jetpack editor scripts) and iSystem block patterns. Use with plugin iSystem GCC Plus for broader Astra/Spectra hardening.
 Author: iSystem Development
+Author URI: https://isystem.app/
 Template: spectra-one
-Version: 1.0.0
+Version: 1.1.0
+Requires at least: 6.3
+Requires PHP: 7.4
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Text Domain: isystem-spectra-companion
+Tags: block-patterns, full-site-editing, child-theme
 */

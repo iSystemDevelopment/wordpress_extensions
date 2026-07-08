@@ -6,38 +6,53 @@
 |-----------|------------|
 | `plugins/db-cleaner-pro/` | `wp-content/plugins/db-cleaner-pro/` |
 | `plugins/isystem-gcc-plus/` | `wp-content/plugins/isystem-gcc-plus/` |
+| `plugins/OptiByte_WP/` | `wp-content/plugins/OptiByte_WP/` |
 | `themes/isystem-spectra-companion/` | `wp-content/themes/isystem-spectra-companion/` |
 
 ## Release checklist
 
-- [ ] Bump `Version:` in plugin/theme header
+- [ ] Bump `Version:` (and matching `*_VERSION` constant) in plugin/theme header
+- [ ] Update package `README.md` version table
 - [ ] `php -l` on changed PHP files
-- [ ] Test activate on staging (PHP 7.4+ / WP 6.3+)
-- [ ] Tag git release `plugin-slug-x.y.z`
+- [ ] Test activate on staging (PHP 7.4+ / WP 6.3+; OptiByte needs PHP 8.0+)
+- [ ] Tag release `slug-x.y.z`
 - [ ] Deploy via rsync/scp — single folder only
+- [ ] Mirror into monorepo `isystem-codebase/wordpress/` when shipping public changes
 
 ## db-cleaner-pro notes
 
-- Log file: `wp-content/db-cleaner-pro.log`
-- Cron hook: `weekly_database_cleanup`
+- Version **2.2.0**
+- Log: `wp-content/db-cleaner-pro.log`
+- Cron hook: `db_cleaner_pro_weekly` (legacy `weekly_database_cleanup` cleared on activate)
 - Admin: **Tools → DB Cleaner**
+- Uses `delete_expired_transients()` — no bulk wipe of warm cache
 
 ## isystem-gcc-plus notes
 
-- Targets Spectra + Astra stack; no Jetpack tweaks
-- See plugin header for script protection list
+- Version **2.4.0**
+- Astra + Spectra only — **no Jetpack / legacy zip** instructions
+- See plugin file for `$matchers_js` / `$matchers_css`
+
+## OptiByte WP notes
+
+- Version **5.0.1**
+- Admin: **Media → OptiByte** (`manage_options`)
+- Staging/output under `uploads/optibyte-wp/`
+- `legacy/v4-archive/` is archive-only — do not deploy if you never used legacy OptiByte
 
 ## isystem-spectra-companion notes
 
-- **Requires** parent theme Spectra One
-- Includes GPL-compatible theme `LICENSE` in theme folder
+- Version **1.1.0**
+- **Requires** parent theme Spectra One (`Template: spectra-one`)
+- MIT `LICENSE` in theme folder
 
 ## .gitignore rationale
 
 Ignored: OS junk, IDE, local wp-config copies, vendor, node_modules, zip artifacts, SQL dumps, uploaded media.
 
-## Related domains
+## Related
 
-- Product marketing: `isystem.app`, `*.isystem.app`
-- Personal portfolio: `diodac.org` (see isystem-deploy)
-- Services (future): `isystem.cloud`
+- Product: `isystem.app`, `optibyte.isystem.app`
+- Portfolio: `diodac.org`
+- Public repo: https://github.com/iSystemDevelopment/wordpress_extensions
+- Monorepo folder: `isystem-codebase/wordpress/`
