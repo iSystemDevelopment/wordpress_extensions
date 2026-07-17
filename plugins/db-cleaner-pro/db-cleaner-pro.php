@@ -8,11 +8,12 @@
  * Requires PHP:      7.4
  * Author:            iSystem Development
  * Author URI:        https://isystem.app/
- * License:           MIT
- * License URI:       https://opensource.org/licenses/MIT
+ * License:           GPLv2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       db-cleaner-pro
  *
  * Copyright (c) 2026 iSystem Development / DIODAC ELECTRONICS
+ * Also available under MIT for non-.org distributions.
  */
 
 defined( 'ABSPATH' ) || exit;
