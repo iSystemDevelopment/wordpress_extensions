@@ -4,16 +4,18 @@ MIT · **iSystem Development** · [optibyte.isystem.app](https://optibyte.isyste
 
 | | |
 |--|--|
-| **Version** | 5.0.1 |
+| **Version** | 5.1.0 |
 | **License** | MIT (repo root) |
 | **Requires** | WordPress 6.0+, PHP 8.0+, Imagick **or** ImageMagick CLI |
 
-WordPress media optimizer evolved from **OptiByte PRO v4** (prior hosted cron era). **v5 is the supported product** — a native WP plugin. The legacy cron tree is archived under `legacy/v4-archive/` for reference only and must **not** be deployed on new hosts.
+WordPress media optimizer — native WP plugin with on-host Imagick encode and optional iSystem cloud API. **v5 is the supported product.**
+
+**Packaging:** Imagick local encode is **free forever**. Cloud AI styles are a **Creative / Business plan bonus** — download the zip and mint an `obwp_…` token from [isystem.app](https://isystem.app/) User Bay (no separate WP subscription).
 
 | Layer | Role |
 |-------|------|
 | **Imagik** | PHP Imagick / ImageMagick CLI — WebP + AVIF encode, local style presets |
-| **AI client** | Optional `api.isystem.app` OptiByte routes (when service token set) |
+| **AI client** | Optional `api.isystem.app` OptiByte routes (Bearer `obwp_…` from User Bay) |
 | **Queue + cron** | JSON queue under `wp-content/uploads/optibyte-wp/`, hourly WP-Cron |
 
 Admin: **Media → OptiByte** (capability: `manage_options`).
@@ -48,9 +50,8 @@ Without an API token, named styles still run **local Imagik presets**.
 
 ```
 optibyte-wp.php
-includes/          Imagik, AI client, queue, scanner, admin
+includes/          Imagick, AI client, queue, scanner, admin
 admin/views/
-legacy/v4-archive/     Archived [retired] deployment — do not use on new sites
 ```
 
 ---

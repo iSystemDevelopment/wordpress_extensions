@@ -30,7 +30,7 @@
 ## isystem-gcc-plus notes
 
 - Version **2.4.0**
-- Astra + Spectra only — **no Jetpack / legacy zip** instructions
+- Astra + Spectra only — **no Jetpack / [retired] zip** instructions
 - See plugin file for `$matchers_js` / `$matchers_css`
 
 ## OptiByte WP notes
@@ -38,7 +38,7 @@
 - Version **5.0.1**
 - Admin: **Media → OptiByte** (`manage_options`)
 - Staging/output under `uploads/optibyte-wp/`
-- `legacy/v4-archive/` is archive-only — do not deploy if you never used legacy OptiByte
+- `legacy/v4-archive/` is archive-only — do not deploy if you never used [retired] OptiByte
 
 ## isystem-spectra-companion notes
 

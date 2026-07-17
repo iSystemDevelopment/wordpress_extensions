@@ -14,8 +14,10 @@ settings_errors( 'optibyte_wp' );
 <div class="wrap optibyte-wrap">
 	<h1><?php esc_html_e( 'OptiByte WP', 'optibyte-wp' ); ?> <span class="optibyte-version">v<?php echo esc_html( OPTIBYTE_WP_VERSION ); ?></span></h1>
 	<p class="description">
-		<?php esc_html_e( 'Media optimizer for WordPress — Imagik (ImageMagick) local encode + optional AI styles via iSystem API.', 'optibyte-wp' ); ?>
+		<?php esc_html_e( 'Media optimizer for WordPress — Imagik (ImageMagick) local encode is free forever. Optional cloud AI styles need a Creative/Business token from isystem.app User Bay.', 'optibyte-wp' ); ?>
 		<a href="https://optibyte.isystem.app/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'OptiByte Studio', 'optibyte-wp' ); ?></a>
+		·
+		<a href="https://isystem.app/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get token / download', 'optibyte-wp' ); ?></a>
 	</p>
 
 	<div class="optibyte-engine">
@@ -84,14 +86,30 @@ settings_errors( 'optibyte_wp' );
 				<td><label><input type="checkbox" name="auto_scan_uploads" value="1" <?php checked( ! empty( $cfg['auto_scan_uploads'] ) ); ?> /> <?php esc_html_e( 'Queue new Media Library images on upload', 'optibyte-wp' ); ?></label></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="api_base"><?php esc_html_e( 'API base URL', 'optibyte-wp' ); ?></label></th>
-				<td><input name="api_base" id="api_base" type="url" class="regular-text" value="<?php echo esc_attr( $cfg['api_base'] ); ?>" /></td>
+				<th scope="row" colspan="2">
+					<h3 style="margin:1.5em 0 0.35em;"><?php esc_html_e( 'Cloud connect (Creative / Business bonus)', 'optibyte-wp' ); ?></h3>
+					<p class="description" style="font-weight:normal;">
+						<?php esc_html_e( 'Imagick encoding stays free forever on this WordPress host. Cloud AI styles use your iSystem Creative or Business credit pool via a site token from User Bay.', 'optibyte-wp' ); ?>
+						<a href="https://isystem.app/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open isystem.app → Log in → User Bay', 'optibyte-wp' ); ?></a>
+					</p>
+				</th>
 			</tr>
 			<tr>
-				<th scope="row"><label for="api_service_token"><?php esc_html_e( 'Service token', 'optibyte-wp' ); ?></label></th>
+				<th scope="row"><label for="api_base"><?php esc_html_e( 'API base URL', 'optibyte-wp' ); ?></label></th>
+				<td><input name="api_base" id="api_base" type="url" class="regular-text" value="<?php echo esc_attr( $cfg['api_base'] ); ?>" placeholder="https://api.isystem.app" /></td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="api_service_token"><?php esc_html_e( 'Cloud API token', 'optibyte-wp' ); ?></label></th>
 				<td>
-					<input name="api_service_token" id="api_service_token" type="password" class="regular-text" value="<?php echo esc_attr( $cfg['api_service_token'] ); ?>" autocomplete="off" />
-					<p class="description"><?php esc_html_e( 'Bearer token for api.isystem.app OptiByte routes (site-to-site). See STUBS.md.', 'optibyte-wp' ); ?></p>
+					<input name="api_service_token" id="api_service_token" type="password" class="regular-text" value="<?php echo esc_attr( $cfg['api_service_token'] ); ?>" autocomplete="off" placeholder="obwp_…" />
+					<p class="description">
+						<?php esc_html_e( 'Paste the token from User Bay (Create API token). Starts with obwp_. Not required for local Imagick WebP/AVIF.', 'optibyte-wp' ); ?>
+					</p>
+					<?php if ( OptiByte_Ai_Client::configured() ) : ?>
+						<p class="optibyte-ok"><?php esc_html_e( 'Token saved — cloud styles can call api.isystem.app.', 'optibyte-wp' ); ?></p>
+					<?php else : ?>
+						<p class="optibyte-warn"><?php esc_html_e( 'No token — named styles use local Imagick presets only.', 'optibyte-wp' ); ?></p>
+					<?php endif; ?>
 				</td>
 			</tr>
 		</table>
